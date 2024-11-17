@@ -1,0 +1,5 @@
+{
+    "api_base_url": "https://api.cloudflare.com/client/v4/accounts/{AccountID}/ai/run/",
+    "api_token": "{API_TOCKEN}",
+    "default_model": "@cf/meta/llama-3-8b-instruct"
+}

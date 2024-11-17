@@ -1,0 +1,18 @@
+# HTTP Requests
+requests==2.32.3  # For API interactions
+
+# JSON Handling and Parsing
+jsonschema==4.23.0  # Optional: For validating JSON structures if needed
+
+# Logging
+loguru==0.5.3  # For enhanced logging functionality
+
+# Python Testing Frameworks (Optional)
+pytest==6.2.5  # For writing and running unit tests
+pytest-json==1.3.0  # To output JSON test results
+
+# Security (Optional)
+python-dotenv==0.19.1  # For handling sensitive configuration in environment files
+
+# Miscellaneous Utilities
+pathlib==1.0.1  # For handling file paths
