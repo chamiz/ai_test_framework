@@ -16,7 +16,10 @@ Follow these steps to set up and start using AI Test Framework:
 
 1. Python 3.8 or higher
 2. Pip (Python package installer)
-3. A supported AI/ML model (LLMA)
+3. Cloudflare free account
+   Follow this guide to setup Cloudflare account and get API token to execute this project.
+   https://developers.cloudflare.com/workers-ai/get-started/rest-api/
+4. A supported AI/ML model (LLMA)
 
 ## **Installation**
 
