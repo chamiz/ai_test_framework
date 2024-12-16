@@ -1,5 +1,5 @@
 {
-    "api_base_url": "https://api.cloudflare.com/client/v4/accounts/{AccountID}/ai/run/",
-    "api_token": "{API_TOCKEN}",
+    "api_base_url": "https://api.cloudflare.com/client/v4/accounts/d66673f89911bfb1e58beacb2c4b4f5e/ai/run/",
+    "api_token": "zwfAdO0sHraMhQGGfH8lyLkkyR74e7jH03KLIIc2",
     "default_model": "@cf/meta/llama-3-8b-instruct"
 }

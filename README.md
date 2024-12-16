@@ -23,12 +23,13 @@ Follow these steps to set up and start using AI Test Framework:
 
 1. Python 3.8 or higher
 2. Pip (Python package installer)
-3. Cloudflare free account[results.log](tests%2Freports%2Fresults.log)
+3. Cloudflare free account 
    Follow this guide to setup Cloudflare account and get API token to execute this project.
    https://developers.cloudflare.com/workers-ai/get-started/rest-api/
 4. A supported AI/ML model (LLMA)
 5. Follow this guide to install Spacy package.
    https://spacy.io/usage/models#quickstart
+
 
 ## **Installation**
 
@@ -45,15 +46,19 @@ Set up environment variables (optional):
 Add your model's API keys or file paths to a config/settings.json file in the project directory.
 
 ## 🛠 Usage
-1. Initialize the Framework:
+Initialize the Framework:
 Import and set up the framework.
 
-2. Test Data file:
+Config files
+In settings.json set api_base_url , api_token as instructed in https://developers.cloudflare.com/workers-ai/get-started/rest-api/
+In you can adjust the validation accuracy in the validators.py file.
+
+Test Data file:
 tests/test_data.js
-3. You can change the prompt and expected results in the test_data.json file.
-4. You can adjust the validation accuracy in the validators.py file.
-5. Run Automated Tests:
+
+You can change the prompt and expected results in the test_data.json file.
+Run Automated Tests:
 Execute load_test_data as python program, not as a test.
 
-6. Reports:
+Reports:
 Generated output will be stored in tests/reports folder

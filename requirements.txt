@@ -17,4 +17,5 @@ python-dotenv==0.19.1  # For handling sensitive configuration in environment fil
 # Miscellaneous Utilities
 pathlib==1.0.1  # For handling file paths
 
-spacy==3.8.3  # Replace this with the version you need, or omit the version to always get the latest
+# Output validation
+spacy==3.8.3
