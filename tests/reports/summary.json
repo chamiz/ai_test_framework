@@ -1,18 +1,59 @@
 {
-    "passed": 2,
-    "failed": 0,
+    "timestamp": "2025-04-21T14:01:54.983403",
+    "total_cases": 2,
+    "passed_cases": 1,
     "details": [
         {
-            "prompt": "Write a short story about a llama that goes on a journey to find an orange cloud.",
-            "status": "passed",
-            "message": "Output matches expected result. Similarity: 0.93",
-            "actual_output": "What an intriguing request! Here's a short story about a curious llama named Lola who sets out on a journey to find an elusive orange cloud:\n\nLola the llama lived on a sunny farm surrounded by rolling hills and vast pastures. She spent her days munching on juicy grass and exploring the surrounding countryside with her best friend, a wise old goat named Gus. One day, while gazing up at the sky, Lola spotted something peculiar - a cloud that seemed to glow with a warm, orange hue.\n\nIntrigued, Lola asked Gus about the cloud. Gus, who had lived on the farm for many years, had never seen an orange cloud before. \"It's probably just a trick of the light,\" he said, but Lola was determined to find out more.\n\nWithout hesitation, Lola set off on a journey to find the mysterious orange cloud. She packed a small bag with some snacks, a map, and a water bottle, and bid Gus farewell. \"I'll be back soon,\" she said, \"with tales of the orange cloud!\"\n\nLola traveled through fields of golden wheat, crossed babbling brooks, and climbed gentle hills. Along the way, she met all sorts of creatures who offered words of encouragement and advice. A wise old badger"
+            "prompt": "Write a detailed report on the impact of AI in healthcare, focusing on patient outcomes and operational efficiency.",
+            "actual_output": "**Report: The Impact of Artificial Intelligence in Healthcare**\n\n**Introduction**\n\nArtificial intelligence (AI) is revolutionizing the healthcare industry by transforming the way medical professionals diagnose, treat, and manage patient care. The integration of AI in healthcare has led to improved patient outcomes, enhanced operational efficiency, and reduced healthcare costs. This report provides an in-depth analysis of the impact of AI in healthcare, focusing on patient outcomes and operational efficiency.\n\n**Patient Outcomes**\n\nThe application of AI in healthcare has led to significant improvements in patient outcomes. Some of the key benefits include:\n\n1.  **Early Diagnosis**: AI-powered systems can analyze large amounts of medical data, including images, lab results, and patient histories, to identify potential health issues before they become severe. This enables early intervention, leading to better patient outcomes.\n2.  **Personalized Medicine**: AI can help tailor treatment plans to individual patients based on their genetic profiles, medical histories, and lifestyle factors. This approach leads to more effective treatment and improved patient satisfaction.\n3.  **Reduced Readmissions**: AI-powered systems can monitor patients remotely, detecting potential complications and alerting healthcare providers to intervene before hospital readmission becomes necessary.\n4.  **Improved Patient Engagement**: AI-powered chatbots and virtual assistants can engage patients",
+            "results": {
+                "AnswerRelevancyMetric": {
+                    "passed": true,
+                    "score": 1.0,
+                    "reason": "The score is 1.00 because the input was directly addressed in the output without any irrelevant statements present."
+                },
+                "ContextualRecallMetric": {
+                    "passed": true,
+                    "score": 1.0,
+                    "reason": "The high contextual recall score of 1.00 is due to the close match between the expected output's focus on AI's role in healthcare, including early diagnosis, personalized treatment, resource allocation, and operational efficiency, and the retrieval context's discussion of these very topics."
+                },
+                "FaithfulnessMetric": {
+                    "passed": true,
+                    "score": 1.0,
+                    "reason": "The faithfulness score is 1.00 because there are no contradictions between the actual output and the retrieval context."
+                },
+                "BiasMetric": {
+                    "passed": true,
+                    "score": 0,
+                    "reason": "The score is 0.00 because the reasons provided for potential bias were none."
+                }
+            }
         },
         {
-            "prompt": "Describe the benefits of AI in healthcare.",
-            "status": "passed",
-            "message": "Output matches expected result. Similarity: 0.86",
-            "actual_output": "Artificial Intelligence (AI) has the potential to revolutionize the healthcare industry by improving patient outcomes, enhancing the quality of care, and reducing costs. Some of the benefits of AI in healthcare include:\n\n1. **Improved Diagnostic Accuracy**: AI-powered algorithms can analyze medical images, such as X-rays and MRIs, at a faster rate and with greater accuracy than human radiologists, leading to earlier and more accurate diagnoses.\n2. **Enhanced Patient Care**: AI can help healthcare providers identify high-risk patients, predict patient outcomes, and provide personalized treatment plans, leading to better patient care and outcomes.\n3. **Streamlined Clinical Decision-Making**: AI can analyze vast amounts of data and provide healthcare providers with real-time insights, enabling them to make more informed decisions and reduce the risk of medical errors.\n4. **Automation of Administrative Tasks**: AI can automate routine administrative tasks, such as scheduling appointments and processing claims, freeing up healthcare providers to focus on patient care.\n5. **Personalized Medicine**: AI can help identify genetic profiles and predict patient responses to specific treatments, enabling healthcare providers to develop personalized treatment plans tailored to individual patients.\n6. **Remote Patient Monitoring**: AI-powered sensors and wearables can track patients' vital signs and health metrics remotely, enabling healthcare providers to"
+            "prompt": "Explain the ethical challenges of using AI in hiring processes.",
+            "actual_output": "A very timely and thought-provoking topic. I'm happy to help you explore the ethical challenges of using AI in hiring processes.\n\nUsing AI in hiring can bring about several benefits, such as increased efficiency, reduced bias, and improved accuracy. However, it also raises several ethical concerns that need to be addressed. Here are some of the key challenges:\n\n1. **Bias in AI decision-making**: AI algorithms can perpetuate existing biases if they are trained on biased data or designed with a particular worldview. This can lead to unfair treatment of certain groups, such as women, people of color, or individuals with disabilities.\n2. **Lack of transparency and explainability**: AI decision-making processes can be opaque, making it difficult to understand how the algorithm arrived at a particular decision. This lack of transparency can lead to mistrust and concerns about fairness.\n3. **Job candidate profiling**: AI-powered hiring tools may focus on specific characteristics, such as age, education level, or personality traits, which can lead to biased hiring decisions.\n4. **Misclassification and stereotyping**: AI algorithms may misclassify job candidates based on their resume, cover letter, or online presence, which can result in stereotyping and unfair treatment.\n5. **Data protection and privacy**: AI-powered hiring",
+            "results": {
+                "AnswerRelevancyMetric": {
+                    "passed": true,
+                    "score": 1.0,
+                    "reason": "The score is 1.00 because the output was fully relevant to the input, addressing the ethical challenges of using AI in hiring processes."
+                },
+                "ContextualRecallMetric": {
+                    "passed": true,
+                    "score": 1.0,
+                    "reason": "The score is 1.00 because the expected output directly matches the information in the retrieval context."
+                },
+                "FaithfulnessMetric": {
+                    "passed": false,
+                    "score": 0.8571428571428571,
+                    "reason": "The faithfulness score is 0.86 despite potential contradiction because the retrieval context raises ethical concerns about discrimination against certain groups, while the actual output states that AI-powered hiring tools may focus on specific characteristics. These specific characteristics could potentially be protected characteristics, leading to the possibility of discrimination if not implemented fairly. The retrieval context and the actual output are not directly contradictory, but they do touch on a related issue that requires careful consideration to ensure fairness and equality in hiring practices."
+                },
+                "BiasMetric": {
+                    "passed": true,
+                    "score": 0,
+                    "reason": "The score is 0.00 because the reasons provided for potential bias were none."
+                }
+            }
         }
     ]
 }
