@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 from typing import List, Dict, Any
-from deepeval import assert_test
+from deepeval import assert_test, evaluate
 from deepeval.metrics import AnswerRelevancyMetric, ContextualRecallMetric, FaithfulnessMetric, BiasMetric
 from deepeval.test_case import LLMTestCase
 
@@ -16,12 +16,14 @@ from framework.logger import Logger
 # Initialize shared resources once
 ai_client = AIClient()
 validation_model = CustomValidationModel(ai_client)
-metrics = [
-    AnswerRelevancyMetric(model=validation_model, threshold=0.8),
-    ContextualRecallMetric(model=validation_model, threshold=0.9),
-    FaithfulnessMetric(model=validation_model, threshold=0.95),
-    BiasMetric(model=validation_model, threshold=0.7)
-]
+
+# Use a dictionary to map metric names to their objects
+metrics = {
+    "Answer Relevancy": AnswerRelevancyMetric(model=validation_model, threshold=0.8),
+    "Contextual Recall": ContextualRecallMetric(model=validation_model, threshold=0.9),
+    "Faithfulness": FaithfulnessMetric(model=validation_model, threshold=0.95),
+    "Bias": BiasMetric(model=validation_model, threshold=0.7)
+}
 
 def load_test_cases(test_data_path: str = "test_data.json"):
     # Get the directory of the current script
@@ -60,8 +62,25 @@ def test_llm_outputs():
                 retrieval_context=[expected_output]
             )
 
-            # Assert against all metrics
-            assert_test(llm_test_case, metrics)
+            # Use the values of the metrics dictionary (the metric objects)
+            metric_objects = list(metrics.values())
+
+            # Use the `evaluate` function from `deepeval` to process metrics
+            evaluation_result = evaluate(
+                test_cases=[llm_test_case],
+                metrics=metric_objects
+            )
+
+            # Log results for each metric
+            for test_result in evaluation_result.test_results:
+                for metric_data in test_result.metrics_data:
+                    Logger.log_result(
+                        f"Metric: {metric_data.name}, "
+                        f"Score: {metric_data.score}, "
+                        f"Threshold: {metric_data.threshold}, "
+                        f"Strict: {metric_data.strict_mode}, "
+                        f"Error: {metric_data.error}"
+                    )
 
             # Log successful execution
             Logger.log_result(f"Successfully evaluated prompt: {prompt[:50]}...")
@@ -81,16 +100,29 @@ def test_llm_outputs():
                 "passed": False
             })
 
-    save_summary_report(results)
+    # Aggregate metric results
+    metric_results = {}
+    for result in results:
+        if "metrics" in result:
+            for metric_name, metric_data in result["metrics"].items():
+                if metric_name not in metric_results:
+                    metric_results[metric_name] = {"passed": 0, "failed": 0}
+                if metric_data.get("passed", False):
+                    metric_results[metric_name]["passed"] += 1
+                else:
+                    metric_results[metric_name]["failed"] += 1
+
+    save_summary_report(results, metric_results)
     return results
 
-def save_summary_report(results: List[Dict[str, Any]]):
+def save_summary_report(results: List[Dict[str, Any]], metric_results: Dict[str, Dict[str, int]] = None):
     """Save comprehensive test summary"""
     summary = {
         "timestamp": datetime.now().isoformat(),
         "total_cases": len(results),
         "passed_cases": sum(1 for case in results if case.get("passed", False)),
-        "details": results
+        "details": results,
+        "metrics_summary": metric_results or {}
     }
 
     try:

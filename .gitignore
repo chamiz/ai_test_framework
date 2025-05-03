@@ -160,3 +160,12 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 
+temp_test_run_data.json
+.deepeval
+.deepeval_telemetry.txt
+.deepeval-cache.json
+get-pip.py
+repomix-output.xml
+reports/summary.json
+.vscode/settings.json
+.vscode/launch.json

@@ -1,9 +1,5 @@
 [
     {
-        "prompt": "Write a detailed report on the impact of AI in healthcare, focusing on patient outcomes and operational efficiency.",
-        "expected_result": "AI in healthcare has significantly improved patient outcomes by enabling early diagnosis, personalized treatment plans, and efficient resource allocation. Operational efficiency has also increased through automation of administrative tasks and predictive analytics."
-    },
-    {
         "prompt": "Explain the ethical challenges of using AI in hiring processes.",
         "expected_result": "AI in hiring raises ethical concerns such as bias in decision-making, lack of transparency, and potential discrimination against certain groups. Ensuring fairness and accountability is critical."
     }
