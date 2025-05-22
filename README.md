@@ -1,178 +1,169 @@
 # **AI Test Framework**
 
-AI Test Framework is a flexible tool designed to automated testing AI generated content of LLMA models. It provides tools and methods for validating AI-generated content, ensuring accuracy.
+A robust framework for automated testing of AI-generated content, featuring seamless integration with [DeepEval](https://deepeval.com) and support for custom Language Models (LLMs).
 
-This document is a sample code of. Please refer that page for more information
-
-Full article 
-https://medium.com/@ambahera/can-we-automate-the-testing-of-ai-generated-content-practical-example-d124e99df52d
-
-**📋 Features**
-
-Handles scenarios where AI models produce varying results for the same input.
-
-**AI models/Tools used**
-llma
-Spacy
-
-**🚀 Getting Started**
-
-Follow these steps to set up and start using AI Test Framework:
-
-## **Prerequisites**
-
-1. Python 3.8 or higher
-2. Pip (Python package installer)
-3. Cloudflare free account 
-   Follow this guide to setup Cloudflare account and get API token to execute this project.
-   https://developers.cloudflare.com/workers-ai/get-started/rest-api/
-4. A supported AI/ML model (LLMA)
-5. Follow this guide to install Spacy package.
-   https://spacy.io/usage/models#quickstart
-
-
-## **Installation**
-
-Clone the repository:
-
-git clone https://github.com/yourusername/ai_test_framework.git  
-cd ai_test_framework  
-
-**Install the required dependencies:**
-
-pip install -r requirements.txt  
-Set up environment variables (optional):
-
-Add your model's API keys or file paths to a config/settings.json file in the project directory.
-
-## 🛠 Usage
-Initialize the Framework:
-Import and set up the framework.
-
-Config files
-In settings.json set api_base_url , api_token as instructed in https://developers.cloudflare.com/workers-ai/get-started/rest-api/
-In you can adjust the validation accuracy in the validators.py file.
-
-Test Data file:
-tests/test_data.js
-
-You can change the prompt and expected results in the test_data.json file.
-Run Automated Tests:
-Execute test_similarity_check_runner.py as python program, not as a test.
-
-Reports:
-Generated output will be stored in tests/reports folder
-
-## Version 2.0
-
-# AI Test Framework with DeepEval Integration
-
-A robust, extensible framework for automated testing and validation of AI-generated content, featuring seamless integration with [DeepEval](https://deepeval.com) and support for custom LLMs.
-
----
+## Table of Contents
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Metrics](#metrics)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
+- [References](#references)
 
 ## Features
 
-- **DeepEval Integration**: Evaluate outputs using advanced metrics such as Answer Relevancy, Contextual Recall, Faithfulness, and Bias Detection.
-- **Custom LLM Support**: Use your own language model backend—no OpenAI API key required.
-- **Configurable**: Prompts, expected results, and thresholds are defined in JSON files.
-- **Comprehensive Reporting**: Detailed logs and summary reports for every test run.
-- **Extensible**: Easily add new metrics, validators, or model adapters.
+- **DeepEval Integration**: 
+  - Answer Relevancy Metrics (threshold: 0.8)
+  - Contextual Recall Metrics (threshold: 0.9)
+  - Faithfulness Metrics (threshold: 0.95)
+  - Bias Detection (threshold: 0.7)
+- **Custom LLM Support**: Bring your own language model
+- **Configurable Testing**: JSON-based test case management
+- **Comprehensive Reporting**: 
+  - Detailed logs in `reports/results.log`
+  - Summary reports in `reports/summary.json`
+  - Integration with DeepEval Dashboard
 
----
+## Prerequisites
+
+1. Python 3.8 or higher
+2. Git
+3. DeepEval account (Sign up at [deepeval.com](https://deepeval.com))
+4. One of the following LLMs:
+   - Cloudflare Workers AI (Follow setup at [Cloudflare Workers AI Guide](https://developers.cloudflare.com/workers-ai/get-started/rest-api/))
+   - Custom LLM implementation
 
 ## Installation
 
 1. **Clone the repository:**
-    ```
+    ```powershell
     git clone https://github.com/chamiz/ai_test_framework.git
     cd ai_test_framework
     ```
 
-2. **Create and activate a virtual environment (optional but recommended):**
-    ```
-    python3 -m venv venv
-    source venv/bin/activate
+2. **Set up virtual environment:**
+    ```powershell
+    python -m venv venv
+    .\venv\Scripts\Activate
     ```
 
 3. **Install dependencies:**
-    ```
+    ```powershell
     pip install -r requirements.txt
     pip install -U deepeval
     ```
 
----
+4. **Login to DeepEval:**
+    ```powershell
+    deepeval login
+    ```
 
 ## Configuration
 
-- **Model Settings:**  
-  Configure your custom LLM in `config/settings.json`:
-    ```
-    {
-      "validation_model": "your-custom-model-name-or-path"
-    }
-    ```
+### Model Settings (config/settings.json)
+```json
+{
+  "api_base_url": "your-api-base-url",
+  "api_token": "your-api-token",
+  "validation_model": "your-model-name"
+}
+```
 
-- **Test Cases:**  
-  Add prompts and expected results in `tests/test_data.json`:
-    ```
-    [
-      {
-        "prompt": "Explain why the sky is blue.",
-        "expected_result": "The sky appears blue because molecules in the atmosphere scatter blue light from the sun more than they scatter red light, a phenomenon known as Rayleigh scattering."
-      }
-    ]
-    ```
+### Test Cases (tests/test_data.json)
+```json
+[
+  {
+    "prompt": "Your test prompt",
+    "expected_result": "Expected response"
+  }
+]
+```
 
----
+### Metric Thresholds
+Adjust metric thresholds in `tests/test_deepeval_matrix.py`:
+```python
+metrics = {
+    "Answer Relevancy": AnswerRelevancyMetric(model=validation_model, threshold=0.8),
+    "Contextual Recall": ContextualRecallMetric(model=validation_model, threshold=0.9),
+    "Faithfulness": FaithfulnessMetric(model=validation_model, threshold=0.95),
+    "Bias": BiasMetric(model=validation_model, threshold=0.7)
+}
+```
 
-## How to Run DeepEval Tests
+## Usage
 
-1. **(Optional) Clear previous logs:**
-    ```
+1. **Clear previous logs (optional):**
+    ```powershell
     python -c "from framework.logger import Logger; Logger.clear_logs()"
     ```
 
-   2. **Run the DeepVal test:**
-       ```
-       deepeval login
-       deepeval test run test_deepeval_matrix.py
-       ```
+2. **Run tests:**
+    ```powershell
+    deepeval test run tests/test_deepeval_matrix.py
+    ```
 
-      - This will:
-         - Use your custom LLM for generating and validating responses.
-         - Evaluate each response using DeepEval metrics.
-         - Log individual results to `reports/results.log`.
-         - Save a summary in `reports/summary.json`.
-         - Results will be uploaded to DeepVal Dashboard
+3. **View results:**
+   - Check `reports/results.log` for detailed logs
+   - View `reports/summary.json` for test summary
+   - Access DeepEval Dashboard for comprehensive analysis
 
----
+## Metrics
 
-## Advanced Usage
+### Answer Relevancy (threshold: 0.8)
+Measures how well the response answers the given prompt.
 
-- **Integrate additional models** by creating a new class that inherits from `DeepEvalBaseLLM` and implements the required interface.
-- **Parallel execution and CI/CD integration** are supported—add your test script to your pipeline as needed.
+### Contextual Recall (threshold: 0.9)
+Evaluates if the response includes all necessary context from the prompt.
 
----
+### Faithfulness (threshold: 0.95)
+Checks if the response remains true to the given context without hallucination.
+
+### Bias Detection (threshold: 0.7)
+Identifies potential biases in the generated responses.
+
+## Troubleshooting
+
+### Common Issues
+
+1. **"NoneType object is not callable" Error**
+   - Ensure your validation model is properly initialized
+   - Check if all required dependencies are installed
+
+2. **Invalid JSON Output**
+   - Verify the LLM output format
+   - Check the prompt formatting
+
+3. **Metric Evaluation Failures**
+   - Review metric thresholds
+   - Validate expected results format
+
+### Debug Mode
+Enable detailed logging by setting verbose mode in your test configuration.
 
 ## Contributing
 
-Contributions are welcome! Please open issues or submit pull requests for new features, bug fixes, or improvements.
-
----
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-MIT License
-
----
+MIT License - See LICENSE file for details.
 
 ## References
 
 - [DeepEval Documentation](https://www.deepeval.com/docs/getting-started)
 - [AI Test Framework Article Series](https://medium.com/@ambahera)
+- [Project GitHub Repository](https://github.com/chamiz/ai_test_framework)
 
 ---
 
-*This project is maintained by Chamila Ambahera.*
+*Maintained by Chamila Ambahera*
+Last updated: May 2025
 
